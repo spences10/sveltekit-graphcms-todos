@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["todos"]
+  "git.enableSmartCommit": true,
+  "git.postCommitCommand": "sync",
+  "cSpell.words": [
+    "Vite",
+    "sveltejs",
+    "todos"
+  ]
 }
