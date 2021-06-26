@@ -21,9 +21,19 @@
   export let todo
 </script>
 
-<p>
-  {todo.todoName}
-</p>
-<p>
-  {todo.done}
-</p>
+<div class="p-4 my-4 card bordered">
+  <div class="form-control">
+    <label for={todo.id} class="label">
+      <div class="text-2xl">{todo.todoName}</div>
+      <div>
+        <input
+          id={todo.id}
+          type="checkbox"
+          bind:checked={todo.done}
+          class="checkbox checkbox-primary"
+        />
+        <span class="checkbox-mark" />
+      </div>
+    </label>
+  </div>
+</div>
