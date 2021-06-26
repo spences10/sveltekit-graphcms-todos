@@ -1,35 +1,9 @@
 import { graphCmsClient } from '$lib/graphql-client'
 import { gql } from 'graphql-request'
 
-export async function get(_req) {
-  try {
-    const { todos } = await graphCmsClient.request(gql`
-      {
-        todos {
-          id
-        }
-      }
-    `)
-
-    return {
-      status: 200,
-      body: {
-        todos,
-      },
-    }
-  } catch (error) {
-    return {
-      status: 500,
-      body: {
-        error: 'I oops! Sorry',
-      },
-    }
-  }
-}
-
 export async function post({ body }) {
   try {
-    const { id } = await graphCmsClient.request(
+    const { createTodo } = await graphCmsClient.request(
       gql`
         mutation AddTodo($todoName: String!) {
           createTodo(data: { todoName: $todoName, done: false }) {
@@ -40,10 +14,21 @@ export async function post({ body }) {
       { todoName: body.todoName }
     )
 
+    await graphCmsClient.request(
+      gql`
+        mutation publishUpvote($id: ID!) {
+          publishTodo(where: { id: $id }, to: PUBLISHED) {
+            id
+          }
+        }
+      `,
+      { id: createTodo.id }
+    )
+
     return {
       status: 200,
       body: {
-        id,
+        status: 'success',
       },
     }
   } catch (error) {
@@ -57,5 +42,6 @@ export async function post({ body }) {
 }
 
 // other CRUDs
-export async function put(request) {}
-export async function del(request) {}
+export async function get(req) {}
+export async function put(req) {}
+export async function del(req) {}
