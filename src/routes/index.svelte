@@ -61,28 +61,38 @@
   }
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-  documentation
-</p>
+<h1>SvelteKit GraphCMS Todos</h1>
 
-<input
-  type="text"
-  placeholder="Enter a todo!"
-  bind:value={text}
-  class="border"
-/>
-<button on:click={addTodo}>Add todo</button>
+<div class="form-control">
+  <input
+    type="text"
+    placeholder="Enter a todo!"
+    bind:value={text}
+    class="input input-bordered mb-4"
+  />
+  <button on:click={addTodo} class="btn btn-primary mb-6"
+    >Add todo</button
+  >
+</div>
 
 <ul>
   {#each todos as { id, todoName, done }}
-    <li>
-      <a href={`/todos/${id}`}>{todoName}</a><input
-        type="checkbox"
-        bind:checked={done}
-        on:change={todoDone({ id, done })}
-      />
-    </li>
+    <div class="p-6 my-4 card bordered">
+      <div class="form-control">
+        <label for={id} class="label">
+          <a href={`/todos/${id}`}>{todoName}</a>
+          <div>
+            <input
+              {id}
+              type="checkbox"
+              bind:checked={done}
+              on:change={todoDone({ id, done })}
+              class="checkbox checkbox-primary"
+            />
+            <span class="checkbox-mark" />
+          </div>
+        </label>
+      </div>
+    </div>
   {/each}
 </ul>
