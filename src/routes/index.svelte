@@ -1,7 +1,27 @@
+<script context="module">
+  export async function load({ fetch }) {
+    const res = await fetch('/todos.json')
+    if (res.ok) {
+      const { todos } = await res.json()
+
+      return {
+        props: { todos },
+      }
+    }
+
+    const { message } = await res.json()
+
+    return {
+      error: new Error(message),
+    }
+  }
+</script>
+
 <script>
+  export let todos
   let text = ''
 
-  async function addTodo(params) {
+  async function addTodo() {
     if (text !== '') {
       try {
         const todo = {
@@ -15,9 +35,29 @@
           },
           body: JSON.stringify(todo),
         })
+        fetchTodos()
         text = ''
       } catch (error) {}
     }
+  }
+
+  async function todoDone(id, done) {
+    try {
+      await fetch('/todos', {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(id, done),
+      })
+      fetchTodos()
+    } catch (error) {}
+  }
+
+  async function fetchTodos() {
+    const res = await fetch('/todos.json')
+    const jsonRes = await res.json()
+    todos = jsonRes.todos
   }
 </script>
 
@@ -34,3 +74,15 @@
   class="border"
 />
 <button on:click={addTodo}>Add todo</button>
+
+<ul>
+  {#each todos as { id, todoName, done }}
+    <li>
+      <a href={`/todos/${id}`}>{todoName}</a><input
+        type="checkbox"
+        bind:checked={done}
+        on:change={todoDone({ id, done })}
+      />
+    </li>
+  {/each}
+</ul>
