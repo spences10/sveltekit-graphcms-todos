@@ -16,7 +16,7 @@ export async function post({ body }) {
 
     await graphCmsAuthClient.request(
       gql`
-        mutation PublishUpvote($id: ID!) {
+        mutation PublishTodo($id: ID!) {
           publishTodo(where: { id: $id }, to: PUBLISHED) {
             id
           }
