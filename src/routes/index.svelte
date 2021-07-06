@@ -75,9 +75,9 @@
 
 <ul>
   {#each todos as { id, todoName, done }}
-    <div class="p-4 my-4 card bordered">
+    <div class="p-4 my-4 card bordered shadow">
       <div class="form-control">
-        <label for={id} class="label">
+        <label for={id} class="label ">
           <a href={`/todos/${id}`} class="text-2xl">{todoName}</a>
           <div>
             <input
