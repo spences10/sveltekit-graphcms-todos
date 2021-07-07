@@ -1,65 +1,13 @@
 <script context="module">
-  export async function load({ fetch, session }) {
-    const res = await fetch('/todos.json')
-    if (res.ok) {
-      const { todos } = await res.json()
-
-      return {
-        props: { todos, user: session.user },
-      }
-    }
-
-    const { message } = await res.json()
-
+  export async function load({ session }) {
     return {
-      error: new Error(message),
+      props: { user: session.user },
     }
   }
 </script>
 
 <script>
   export let user
-  export let todos
-  let text = ''
-
-  async function addTodo() {
-    if (text !== '') {
-      try {
-        const todo = {
-          todoName: text,
-          done: false,
-        }
-        await fetch('/todos', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(todo),
-        })
-        fetchTodos()
-        text = ''
-      } catch (error) {}
-    }
-  }
-
-  async function todoDone(id, done) {
-    try {
-      await fetch('/todos', {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(id, done),
-      })
-      fetchTodos()
-    } catch (error) {}
-  }
-
-  async function fetchTodos() {
-    const res = await fetch('/todos.json')
-    const jsonRes = await res.json()
-    todos = jsonRes.todos
-  }
 </script>
 
 {#if user}
@@ -79,4 +27,3 @@
     >
   </a>
 {/if}
-
