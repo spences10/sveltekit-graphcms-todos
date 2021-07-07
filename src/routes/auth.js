@@ -1,4 +1,5 @@
 import { CLIENT_ID, CLIENT_SECRET } from '$lib/endpoint'
+import fetch from 'node-fetch'
 
 const tokenUrl = 'https://github.com/login/oauth/access_token'
 const userUrl = 'https://api.github.com/user'
