@@ -1,3 +1,15 @@
+<script context="module">
+  export async function load({ page, session }) {
+    if (page.path === '/todos' && session.user === '') {
+      return {
+        status: 302,
+        redirect: '/',
+      }
+    }
+    return { props: {} }
+  }
+</script>
+
 <script>
   import Header from '$lib/header.svelte'
   import ThemeSelect from '$lib/theme-select.svelte'
