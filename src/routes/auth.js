@@ -14,7 +14,7 @@ export async function get(req) {
 
   return {
     status: 302,
-    headers: { location: '/' },
+    headers: { location: '/todos' },
   }
 }
 

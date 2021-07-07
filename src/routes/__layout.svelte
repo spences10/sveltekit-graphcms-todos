@@ -1,6 +1,6 @@
 <script context="module">
   export async function load({ page, session }) {
-    if (page.path === '/todos' && session.user === '') {
+    if (page.path.includes('/todos') && session.user === '') {
       return {
         status: 302,
         redirect: '/',

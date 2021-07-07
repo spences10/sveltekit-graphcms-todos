@@ -80,36 +80,3 @@
   </a>
 {/if}
 
-<div class="form-control">
-  <input
-    type="text"
-    placeholder="Enter a todo!"
-    bind:value={text}
-    class="input input-bordered mb-4 text-2xl"
-  />
-  <button on:click={addTodo} class="btn btn-primary mb-7 text-2xl"
-    >Add todo</button
-  >
-</div>
-
-<ul>
-  {#each todos as { id, todoName, done }}
-    <div class="p-4 my-4 card bordered shadow">
-      <div class="form-control">
-        <label for={id} class="label ">
-          <a href={`/todos/${id}`} class="text-2xl">{todoName}</a>
-          <div>
-            <input
-              {id}
-              type="checkbox"
-              bind:checked={done}
-              on:change={todoDone({ id, done })}
-              class="checkbox checkbox-primary"
-            />
-            <span class="checkbox-mark" />
-          </div>
-        </label>
-      </div>
-    </div>
-  {/each}
-</ul>
