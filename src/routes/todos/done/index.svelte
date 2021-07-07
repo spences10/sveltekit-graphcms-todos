@@ -1,6 +1,6 @@
 <script context="module">
   export async function load({ fetch }) {
-    const res = await fetch('/done.json')
+    const res = await fetch('/todos/done.json')
     if (res.ok) {
       const { todos } = await res.json()
 
