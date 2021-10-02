@@ -15,7 +15,7 @@
     "autoprefixer": "10.3.6",
     "cookie": "0.4.1",
     "cssnano": "5.0.8",
-    "daisyui": "1.14.1",
+    "daisyui": "1.14.2",
     "env-cmd": "10.1.0",
     "graphql": "15.6.0",
     "graphql-request": "3.5.0",
