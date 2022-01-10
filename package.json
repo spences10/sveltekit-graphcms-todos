@@ -14,7 +14,7 @@
     "@sveltejs/kit": "next",
     "autoprefixer": "10.4.2",
     "cookie": "0.4.1",
-    "cssnano": "5.0.14",
+    "cssnano": "5.0.15",
     "daisyui": "1.21.0",
     "env-cmd": "10.1.0",
     "graphql": "16.2.0",
