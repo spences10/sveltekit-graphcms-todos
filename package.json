@@ -19,7 +19,7 @@
     "env-cmd": "10.1.0",
     "graphql": "16.5.0",
     "graphql-request": "4.3.0",
-    "node-fetch": "3.2.5",
+    "node-fetch": "3.2.6",
     "postcss": "8.4.14",
     "postcss-load-config": "4.0.1",
     "prettier": "2.6.2",
